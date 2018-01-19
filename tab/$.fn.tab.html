@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        li{
+            list-style: none;
+            text-align: center;
+            font-size: 16px;
+            float: left;
+            width: 100px;
+        }
+      .tab{
+          width: 300px;
+      }
+        .title{
+            width: 100%;
+        }
+        .title li{
+            line-height: 30px;
+            cursor: pointer;
+        }
+        .title li.active{
+            background: red;
+        }
+        .con li{
+            line-height: 60px;
+            display: none;
+        }
+        .con li.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <ul class="title">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <ul class="con">
+            <li class="show">11111</li>
+            <li>22222</li>
+            <li>33333</li>
+        </ul>
+    </div>
+<script>
+    jQuery(function($){
+        console.log($.fn);
+        $.fn.tab=function(){
+            var t=$(this).find('.title li');
+            var c=$(this).find('.con li');
+            t.click(function(){
+                var ti=t.index(this);
+                    ci= c.get(ti);
+                $(this).addClass("active").siblings().removeClass('active');
+                $(ci).addClass("show").siblings().removeClass('show');
+            })
+        }
+        $(".tab").tab();
+    });
+</script>
+</body>
+</html>
